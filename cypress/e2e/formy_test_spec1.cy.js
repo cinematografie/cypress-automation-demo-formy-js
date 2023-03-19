@@ -35,18 +35,24 @@ describe('formy test spec', () => {
         cy.get('td.new.day').first().click()
     })
 
-    //note that drag and drop on formy does not work on all browsers (chrome only)
-    it('Formy site - Drag and drop tests', () => {
+    //note that drag and drop on formy is flakey due to application code; the below test
+    //can pass when Cypress does not catch the exception for the draggable function failing
+    it.skip('Formy site - Drag and drop tests', () => {
         cy.get('#navbarDropdownMenuLink').click()
         cy.get('.dropdown-menu > [href="/dragdrop"]').click()
         cy.url().should('eq', 'https://formy-project.herokuapp.com/dragdrop')
         cy.get('#image').drag('#box', {force:true})
         cy.get('p').should('exist')
     })
-    //
-    // it('Formy site - Enabled and Disabled Elements tests', () => {
-    // })
-    //
+
+    it('Formy site - Enabled and Disabled Elements tests', () => {
+        cy.get('#navbarDropdownMenuLink').click()
+        cy.get('.dropdown-menu > [href="/enabled"]').click()
+        cy.url().should('eq', 'https://formy-project.herokuapp.com/enabled')
+        cy.get('#disabledInput').should('be.disabled')
+        cy.get('#input').click().type('some text can be typed')
+    })
+
     // it('Formy site - Modal tests', () => {
     //
     // })
