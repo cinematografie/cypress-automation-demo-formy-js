@@ -4,10 +4,14 @@
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^2.2.3",
     "cypress": "^12.8.1",
+    "cypress-plugin-tab": "^1.0.5",
     "cypress-wait-until": "^1.7.2"
   },
   "scripts": {
     "cy:open": "npx cypress open --browser chrome",
     "cy:run": "npx cypress run --chrome"
+  },
+  "dependencies": {
+    "cypress-real-events": "^1.7.6"
   }
 }

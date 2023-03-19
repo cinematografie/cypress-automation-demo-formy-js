@@ -9,7 +9,7 @@ describe('formy test spec', () => {
     //not testing Autocomplete due to Places API error: BillingNotEnabledMapError on Formy site
     it('Formy site - Checkbox tests', () => {
         cy.get('.jumbotron-fluid').contains('Checkbox').click()
-        cy.wait(1000)
+        cy.wait(500)
             .waitUntil(() => cy.get('h1').contains('Checkboxes'))
         cy.get('#checkbox-1').click()
             .should('be.checked')
@@ -53,10 +53,20 @@ describe('formy test spec', () => {
         cy.get('#input').click().type('some text can be typed')
     })
 
-    // it('Formy site - Modal tests', () => {
-    //
-    // })
-    //
+    it('Formy site - Modal tests', () => {
+        cy.viewport(900, 600)
+        cy.get('.jumbotron-fluid').contains('Modal').click()
+        cy.url().should('eq', 'https://formy-project.herokuapp.com/modal')
+        cy.get('#modal-button').click()
+        cy.get('#exampleModalLabel').should('be.visible')
+        cy.get('.modal-body').click()
+        cy.wait(500)
+        //here we can tab through on the modal like a blind user might do to use the site, then we close the modal
+            cy.realPress('Tab').realPress('Tab').realPress('Enter')
+        cy.wait(1000)
+        cy.get('#exampleModalLabel').should('not.be.visible')
+    })
+
     // it('Formy site - Page Scroll tests', () => {
     //
     // })
