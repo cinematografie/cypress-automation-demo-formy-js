@@ -4,5 +4,9 @@
   "devDependencies": {
     "cypress": "^12.8.1",
     "cypress-wait-until": "^1.7.2"
+  },
+  "scripts": {
+    "cy:open": "npx cypress open --browser chrome",
+    "cy:run": "npx cypress run --chrome"
   }
 }
