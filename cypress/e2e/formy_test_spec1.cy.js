@@ -8,7 +8,6 @@ describe('formy test spec', () => {
 
     //not testing Autocomplete due to Places API error: BillingNotEnabledMapError on Formy site
     it('Formy site - Checkbox tests', () => {
-        //Asserting we made it to the right page
         cy.get('.jumbotron-fluid').contains('Checkbox').click()
         cy.wait(1000)
             .waitUntil(() => cy.get('h1').contains('Checkboxes'))
@@ -24,7 +23,6 @@ describe('formy test spec', () => {
     it('Formy site - Datepicker tests', () => {
         cy.get('#navbarDropdownMenuLink').click()
         cy.get('.dropdown-menu > [href="/datepicker"]').click()
-        //assert we are on the right page
         cy.url().should('eq', 'https://formy-project.herokuapp.com/datepicker')
         cy.get('#datepicker').click()
             //here we assume if the site had functionality, user could
@@ -37,9 +35,14 @@ describe('formy test spec', () => {
         cy.get('td.new.day').first().click()
     })
 
-    // //note that drag and drop on formy does not work on all browsers (chrome only)
-    // it('Formy site - Drag and drop tests', () => {
-    // })
+    //note that drag and drop on formy does not work on all browsers (chrome only)
+    it('Formy site - Drag and drop tests', () => {
+        cy.get('#navbarDropdownMenuLink').click()
+        cy.get('.dropdown-menu > [href="/dragdrop"]').click()
+        cy.url().should('eq', 'https://formy-project.herokuapp.com/dragdrop')
+        cy.get('#image').drag('#box', {force:true})
+        cy.get('p').should('exist')
+    })
     //
     // it('Formy site - Enabled and Disabled Elements tests', () => {
     // })

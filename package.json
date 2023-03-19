@@ -2,6 +2,7 @@
   "name": "kristina-druin-automation-project-js",
   "version": "1.0.0",
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.2.3",
     "cypress": "^12.8.1",
     "cypress-wait-until": "^1.7.2"
   },
